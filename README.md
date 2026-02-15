@@ -162,11 +162,6 @@ Lints TypeScript source codes and files, checking for linting errors.
 
 Fixes lint errors.
 
-### `npm run docker:dev`
-
-- Runs the NextJS app in development mode inside Docker using Webpack and NodeJS.
-- Sets the `WATCHPACK_POLLING=true` environment variable (only for Docker) to enable hot-reload for Webpack, since hot-reload with Turbopack [currently doesn't work in Docker](https://github.com/ymeskini/ai-app/issues/1).
-
 </details>
 <br>
 
@@ -179,7 +174,8 @@ These scripts are called within the `Dockerfile` for building images.
 
 ### `npm run docker:dev`
 
-- Sets `WATCHPACK_POLLING=true` and builds a Docker image for localhost development.
+- Runs the NextJS app in development mode inside Docker using Webpack and NodeJS.
+- Sets the `WATCHPACK_POLLING=true` environment variable (only for Docker) to enable hot-reload with Webpack, since hot-reload with Turbopack [currently doesn't work in Docker](https://github.com/ymeskini/ai-app/issues/1).
 - Uses the `docker-compose.yml` Docker compose file.
 
 ### `npm run docker:build`
