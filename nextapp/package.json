@@ -10,7 +10,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "docker:dev": "WATCHPACK_POLLING=\"true\" next dev --webpack",
+    "docker:build": "IS_BUILD_DOCKER=\"1\" npm run build",
+    "docker:static": "NODE_ENV=\"production\" IS_BUILD_STATIC=\"1\" npm run build"
   },
   "dependencies": {
     "next": "16.1.6",
