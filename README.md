@@ -74,7 +74,7 @@ Using Node
       npm run build
       ```
 
-      - This command exports the build artifacts to the `/nextapp/nextapp/out` directory for **STATIC EXPORT** (`IS_BUILD_STATIC=1`).
+      - This command exports the build artifacts to the `/nextapp/out` directory for **STATIC EXPORT** (`IS_BUILD_STATIC=1`).
 
       - This command exports the build artifacts to the `/nextapp/.next/standalone ` and `/nextapp/.next/.static` directories for **DOCKER STANDALONE MODE** (`IS_BUILD_DOCKER=1`).
 
@@ -123,6 +123,7 @@ Usage with Docker is an alternate option to using Node directly from the [Usage]
    > Outputs build files in the `/nextapp/out` directory.
 
 </details>
+<br>
 
 ## 📜 Available Scripts
 
@@ -147,7 +148,7 @@ Builds the NextJS app for production mode.
 > ⚠️ **WARNING**: Ensure only one of `IS_BUILD_STATIC` or `IS_BUILD_DOCKER` has a value of `1` to avoid build conflicts.
 
 - **Static export**<br>
-   When `IS_BUILD_STATIC=1`: exports the frontend-only build artifacts to the `/nextapp/nextapp/out` directory.
+   When `IS_BUILD_STATIC=1`: exports the frontend-only build artifacts to the `/nextapp/out` directory.
 - **Docker standalone mode**<br>
    When `IS_BUILD_DOCKER=1`: exports the NextJS app (uses app router) build artifacts to the `/nextapp/.next/standalone ` and `/nextapp/.next/.static` directories for Docker deployment.
 
@@ -164,7 +165,7 @@ Fixes lint errors.
 ### `npm run docker:dev`
 
 - Runs the NextJS app in development mode inside Docker using Webpack and NodeJS.
-- Sets the `WATCHPACK_POLLING=true` environment variable (only for Docker) to enable hot-reload for Webpack. Hot-reload with Turbopack [currently doesn't work in Docker](https://github.com/ymeskini/ai-app/issues/1).
+- Sets the `WATCHPACK_POLLING=true` environment variable (only for Docker) to enable hot-reload for Webpack, since hot-reload with Turbopack [currently doesn't work in Docker](https://github.com/ymeskini/ai-app/issues/1).
 
 </details>
 <br>
