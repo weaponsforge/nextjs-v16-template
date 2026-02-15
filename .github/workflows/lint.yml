@@ -23,5 +23,5 @@ jobs:
       - name: Install Dependencies and Lint
         run: |
           cd nextapp
-          npm install
+          npm ci
           npm run lint
