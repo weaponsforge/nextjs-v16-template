@@ -1,0 +1,20 @@
+services:
+  # NextJS v16+ app (uses app router) running as a static frontend-only export
+  # Warning: NextJS server features will error or not work here
+  weaponsforge.next16-static:
+    container_name: weaponsforge-next16-static
+    image: weaponsforge/next16:static
+    restart: always
+    build:
+      context: ./nextapp
+      dockerfile: Dockerfile
+      target: production-static
+    networks:
+      - weaponsforge-next16-static
+    ports:
+      - "3000:3000"
+
+networks:
+  weaponsforge-next16-static:
+    name: weaponsforge-next16-static
+    external: false
