@@ -1,0 +1,22 @@
+services:
+  # NextJS v16+ app (uses app router) running as a standalone mode build
+  weaponsforge.next16:
+    container_name: weaponsforge-next16
+    image: weaponsforge/next16:prod
+    restart: always
+    build:
+      context: ./nextapp
+      dockerfile: Dockerfile
+      target: production
+    networks:
+      - weaponsforge-next16-prod
+    volumes:
+      - /opt/client/node_modules
+      - /opt/client/.next
+    ports:
+      - "3000:3000"
+
+networks:
+  weaponsforge-next16-prod:
+    name: weaponsforge-next16-prod
+    external: false

@@ -1,0 +1,22 @@
+services:
+  # NextJS v16+ app (uses app router) running for localhost development mode
+  weaponsforge.next16-dev:
+    container_name: weaponsforge-next16-dev
+    image: weaponsforge/next16:dev
+    build:
+      context: ./nextapp
+      dockerfile: Dockerfile
+      target: development
+    networks:
+      - weaponsforge-next16
+    volumes:
+      - ./nextapp:/opt/client
+      - /opt/client/node_modules
+      - /opt/client/.next
+    ports:
+      - "3000:3000"   # NextJS web server
+
+networks:
+  weaponsforge-next16:
+    name: weaponsforge-next16
+    external: false
