@@ -1,6 +1,10 @@
 ## nextjs-v16-template
 
-Barebones NextJS v16 React app template with custom ESLint rules and Docker configurations.
+Barebones NextJS v16 React app template using the **App Router** with custom ESLint rules and Docker configurations.
+
+> [!TIP]
+> You may use this project as a **GitHub Template** for quick setup.<br>
+> Click **Use this template** (upper right), then select **Create a new repository**
 
 ## 📋 Requirements
 
@@ -28,55 +32,61 @@ Barebones NextJS v16 React app template with custom ESLint rules and Docker conf
 
 ## 🛠️ Installation
 
-1. Clone the repository.<br>
-   ```sh
-   git clone https://github.com/weaponsforge/next-v16-template.git
-   ```
+#### 1. Clone this repository or your fork/template.
 
-2. Install dependencies.<br>
-   ```sh
-   cd nextapp
-   npm install
-   ```
+```sh
+git clone https://github.com/weaponsforge/next-v16-template.git
+```
 
-3. Create a `.env.local` file from the `.env.example` file inside the `/nextapp` directory.
+#### 2. Install dependencies.
 
-   > ⚠️ Ensure only one of `IS_BUILD_STATIC` or `IS_BUILD_DOCKER` has a value of `1` to avoid build conflicts.
+```sh
+cd nextapp
+npm install
+```
 
-   | Variable | Description |
-   | --- | --- |
-   | IS_BUILD_STATIC | If value is `1`, builds and exports the NextJS app into a static build in the `/nextapp/out` directory when running `"npm run build"` |
-   | IS_BUILD_DOCKER | Flag to build the NextJS app for Docker in production using the standalone mode build. |
+#### 3. Create a `.env.local` file from the `.env.example` file inside the `/nextapp` directory.
+
+> ⚠️ Ensure only one of `IS_BUILD_STATIC` or `IS_BUILD_DOCKER` has a value of `1` to avoid build conflicts.
+
+| Variable | Description |
+| --- | --- |
+| IS_BUILD_DOCKER | If value is `1`, builds the NextJS app for Docker in production using the standalone mode build into the `/nextapp/.next/standalone` and `/nextapp/.next/static` directories. |
+| IS_BUILD_STATIC | If value is `1`, builds and exports the NextJS app into a static build in the `/nextapp/out` directory when running `"npm run build"`.<br><br>⚠️ Next.js apps that use heavy React Server Components (RSC) and Next.js server features will fail to build as a static output. Te enable true static export, [adjust necessary settings](https://nextjs.org/docs/app/guides/static-exports) in the `next.config.ts` file and the overall app before export. |
 
 ## 📖 Usage
 
 Using Node
 
-1. Run the React app for local development.<br>
+#### 1. Run the React app for local development.
+
+```sh
+cd nextapp
+npm run dev
+```
+
+#### 2. Launch the local app website in a web browser at:
+
+```
+http://localhost:3000
+```
+
+#### 3. Edit the source code and wait for changes to display in the web browser.
+
+#### 4. To build the React app
+
+- For [static export](https://nextjs.org/docs/app/getting-started/deploying#static-export) (only frontend HTML/CSS/JS), set the environment variables `IS_BUILD_STATIC=1` and `IS_BUILD_DOCKER=0`.
+- For [Docker standalone mode](https://nextjs.org/docs/app/getting-started/deploying#docker), set the environment variables `IS_BUILD_STATIC=0` and `IS_BUILD_DOCKER=1`.
+
+- Run
+
    ```sh
-   cd nextapp
-   npm run dev
+   npm run build
    ```
 
-2. Launch the local app website in a web browser at:<br>
-   ```
-   http://localhost:3000
-   ```
+   - This command exports the build artifacts to the `/nextapp/out` directory for **STATIC EXPORT** (`IS_BUILD_STATIC=1`).
 
-3. Edit the source code and wait for changes to display in the web browser.
-
-4. To build the React app
-   - For [static export](https://nextjs.org/docs/app/getting-started/deploying#static-export) (only frontend HTML/CSS/JS), set the environment variables `IS_BUILD_STATIC=1` and `IS_BUILD_DOCKER=0`.
-   - For [Docker standalone mode](https://nextjs.org/docs/app/getting-started/deploying#docker), set the environment variables `IS_BUILD_STATIC=0` and `IS_BUILD_DOCKER=1`.
-   - Run
-
-      ```sh
-      npm run build
-      ```
-
-      - This command exports the build artifacts to the `/nextapp/out` directory for **STATIC EXPORT** (`IS_BUILD_STATIC=1`).
-
-      - This command exports the build artifacts to the `/nextapp/.next/standalone ` and `/nextapp/.next/.static` directories for **DOCKER STANDALONE MODE** (`IS_BUILD_DOCKER=1`).
+   - This command exports the build artifacts to the `/nextapp/.next/standalone ` and `/nextapp/.next/.static` directories for **DOCKER STANDALONE MODE** (`IS_BUILD_DOCKER=1`).
 
 ## ⚡Alternate Usage
 
@@ -91,34 +101,39 @@ Usage with Docker is an alternate option to using Node directly from the [Usage]
 
 ### Build the Development Docker Image
 
-1. Set up the environment variables for the `/app` directory. Refer to the [Installation](#️-installation) section **# 3** for more information.
+#### 1. Set up the environment variables for the `/nextapp` directory.
 
-2. Build the image for local development.<br>
-   ```sh
-   docker compose build --no-cache
-   ```
+- Refer to the [Installation](#️-installation) section **# 3** for more information.
 
-   > **INFO:** Do this step only once during initial installation. Re-run this step if there will be changes to the Dockerfile or after installing new Node libraries.
+#### 2. Build the image for local development.
 
-3. Run the container for local development.<br>
-   ```sh
-   docker compose up
-   ```
+```sh
+docker compose build --no-cache
+```
 
-4. Launch the local app website in a web browser at:<br>
-   ```
-   http://localhost:3000
-   ```
+> **INFO:** Do this step only once during initial installation. Re-run this step if there will be changes to the Dockerfile or after installing new Node libraries.
 
-5. Edit the source code and wait for changes to display in the web browser.
+#### 3. Run the container for local development.
+
+```sh
+docker compose up
+```
+
+#### 4. Launch the local app website in a web browser at:
+
+```
+http://localhost:3000
+```
+
+#### 5. Edit the source code and wait for changes to display in the web browser.
 
 ### Other Docker Builds
 
-1. `docker-compose.prod.yml` - packages the NextJS app into a standalone mode for Docker NextJS (app router) deployment.
+1. **`docker-compose.prod.yml`** - packages the NextJS app into a standalone mode for Docker NextJS (app router) deployment.
 
    > Outputs build files in the `/nextapp/.next/standalone` and `/nextapp/.next/.static` directories.
 
-2. `docker-compose.static.yml` - packages the frontend-only NextJS app into a static export.
+2. **`docker-compose.static.yml`** - packages the frontend-only NextJS app into a static export.
 
    > Outputs build files in the `/nextapp/out` directory.
 
@@ -148,11 +163,14 @@ Builds the NextJS app for production mode.
 > ⚠️ **WARNING**: Ensure only one of `IS_BUILD_STATIC` or `IS_BUILD_DOCKER` has a value of `1` to avoid build conflicts.
 
 - **Static export**<br>
-   When `IS_BUILD_STATIC=1`: exports the frontend-only build artifacts to the `/nextapp/out` directory.
+   When `IS_BUILD_STATIC=1`: exports the frontend-only build artifacts to the `/nextapp/out` directory.<br>
+
+   >⚠️ **NOTE**: Next.js apps that use Next.js server features will fail to build as a **static output**. Te enable true static export, [adjust necessary settings](https://nextjs.org/docs/app/guides/static-exports) in the `next.config.ts` file and the overall app before export.
+
 - **Docker standalone mode**<br>
    When `IS_BUILD_DOCKER=1`: exports the NextJS app (uses app router) build artifacts to the `/nextapp/.next/standalone ` and `/nextapp/.next/.static` directories for Docker deployment.
 
-> ℹ️ **INFO**: See the `"npm run docker:build"` script to build the NextJS app for production mode using Docker (NextJS standalone mode build).
+   > ℹ️ **INFO**: See the `"npm run docker:build"` script to build the NextJS app for production mode using Docker (NextJS standalone mode build).
 
 ### `npm run lint`
 
