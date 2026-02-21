@@ -61,11 +61,9 @@ body:
       multiple: true
       options:
         - 'Not sure'
-        - 'MDX (Markdown) Content'
-        - 'React Component'
-        - 'Fumadocs UI'
-        - 'CSS Styling'
-        - 'Authentication'
+        - 'React component'
+        - 'CSS styling'
+        - 'Build'
         - 'Others'
     validations:
       required: true
