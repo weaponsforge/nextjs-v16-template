@@ -31,7 +31,8 @@ RUN --mount=type=cache,target=/root/.npm \
 COPY --chown=node:node . ./
 USER node
 EXPOSE 3000
-CMD ["npm", "run", "docker:dev"]
+CMD ["sh", "-c", "if [ \"$IS_WEBPACK\" = \"1\" ]; then npm run docker:dev --webpack; else npm run dev; fi"]
+# CMD ["npm", "run", "docker:dev"]
 
 # PRODUCTION CLIENT PROFILE (Docker standalone mode build)
 # https://hmos.dev/en/nextjs-docker-standalone-and-custom-server#2-standalone-mode-build
