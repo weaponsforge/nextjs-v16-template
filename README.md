@@ -23,9 +23,9 @@ Barebones NextJS v16 React app template using the **App Router** with custom ESL
 
 | Library | Version | Description |
 | --- | --- | --- |
-| Next | 16.1.6 | A React framework |
-| React | 19.2.3 | Library for creating reusable/composable and interactive components |
-| Tailwind CSS | 4+ | Generic, composable utility classes for CSS styling |
+| Next | 16.2.0 | A React framework |
+| React | 19.2.4 | Library for creating reusable/composable and interactive components |
+| Tailwind CSS | 4.2.1 | Generic, composable utility classes for CSS styling |
 | ESLint | 9+ | Enforces coding formats, rules and preferences |
 
 </details>
@@ -53,6 +53,7 @@ npm install
 | --- | --- |
 | IS_BUILD_DOCKER | If value is `1`, builds the NextJS app for Docker in production using the standalone mode build into the `/nextapp/.next/standalone` and `/nextapp/.next/static` directories. |
 | IS_BUILD_STATIC | If value is `1`, builds and exports the NextJS app into a static build in the `/nextapp/out` directory when running `"npm run build"`.<br><br>⚠️ Next.js apps that use heavy React Server Components (RSC) and Next.js server features will fail to build as a static output. Te enable true static export, [adjust necessary settings](https://nextjs.org/docs/app/guides/static-exports) in the `next.config.ts` file and the overall app before export. |
+| IS_WEBPACK | Set to `1` to run the app in development mode using **Webpack**. <br><br>⭐ **IMPORTANT**: When running the app via **Docker** on Windows OS (`docker compose up`), this must be set to `1` to enable hot reload.|
 
 ## 📖 Usage
 
