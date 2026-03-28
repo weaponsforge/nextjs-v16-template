@@ -16,7 +16,7 @@
     "docker:static": "NODE_ENV=\"production\" IS_BUILD_STATIC=\"1\" npm run build"
   },
   "dependencies": {
-    "next": "16.2.0",
+    "next": "16.2.1",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
@@ -26,8 +26,8 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9",
-    "eslint-config-next": "16.2.0",
-    "tailwindcss": "^4.2.1",
+    "eslint-config-next": "16.2.1",
+    "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3"
   }
 }
