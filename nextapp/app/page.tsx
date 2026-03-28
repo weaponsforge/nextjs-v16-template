@@ -1,4 +1,5 @@
 import Image from 'next/image'
+
 import { Menu } from '@/features'
 
 export default function Home() {
