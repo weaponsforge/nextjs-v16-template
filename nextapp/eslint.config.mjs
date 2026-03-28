@@ -1,6 +1,7 @@
 import { defineConfig, globalIgnores } from 'eslint/config'
 import nextVitals from 'eslint-config-next/core-web-vitals'
 import nextTs from 'eslint-config-next/typescript'
+import importPlugin from 'eslint-plugin-import'
 
 const eslintConfig = defineConfig([
   ...nextVitals,
@@ -15,6 +16,9 @@ const eslintConfig = defineConfig([
     'next-env.d.ts',
   ]),
   {
+    plugins: {
+      import: importPlugin,
+    },
     rules: {
       'indent': ['error', 2],
       'linebreak-style': ['error', 'unix'],
@@ -22,7 +26,7 @@ const eslintConfig = defineConfig([
       'semi': ['error', 'never'],
       'no-unused-vars': 'error',
       'no-undef': 'error',
-      'no-console': ['error', { 'allow': ['error'] }],
+      'no-console': ['error', { allow: ['error'] }],
       'react/react-in-jsx-scope': 'off',
       'no-restricted-imports': [
         'error',
@@ -33,6 +37,41 @@ const eslintConfig = defineConfig([
           ]
         }
       ],
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            ['parent', 'sibling', 'index'],
+            'type',
+          ],
+          pathGroups: [
+            {
+              pattern: 'react',
+              group: 'external',
+              position: 'before',
+            },
+            {
+              pattern: 'next/**',
+              group: 'external',
+              position: 'before',
+            },
+            {
+              pattern: '@/**',
+              group: 'internal',
+              position: 'after',
+            },
+          ],
+          'newlines-between': 'always',
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+        },
+      ],
+      'import/newline-after-import': ['error', { count: 1 }],
     },
   },
 ])
