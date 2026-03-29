@@ -54,6 +54,7 @@ npm install
 | IS_BUILD_DOCKER | If value is `1`, builds the NextJS app for Docker in production using the standalone mode build into the `/nextapp/.next/standalone` and `/nextapp/.next/static` directories. |
 | IS_BUILD_STATIC | If value is `1`, builds and exports the NextJS app into a static build in the `/nextapp/out` directory when running `"npm run build"`.<br><br>⚠️ Next.js apps that use heavy React Server Components (RSC) and Next.js server features will fail to build as a static output. Te enable true static export, [adjust necessary settings](https://nextjs.org/docs/app/guides/static-exports) in the `next.config.ts` file and the overall app before export. |
 | IS_WEBPACK | Set to `1` to run the app in development mode using **Webpack**. <br><br>⭐ **IMPORTANT**: When running the app via **Docker** on Windows OS (`docker compose up`), this must be set to `1` to enable hot reload.|
+| WATCHPACK_POLLING | Set to `true` to enable Webpack-based hot reloading when running the app in Docker on Windows. Required because Turbopack hot reload is currently unreliable in this setup (Docker + Windows). |
 
 ## 📖 Usage
 
@@ -90,6 +91,9 @@ http://localhost:3000
    - This command exports the build artifacts to the `/nextapp/.next/standalone ` and `/nextapp/.next/.static` directories for **DOCKER STANDALONE MODE** (`IS_BUILD_DOCKER=1`).
 
 ## ⚡Alternate Usage
+
+> [!TIP]
+> Set `IS_WEBPACK=1` and `WATCHPACK_POLLING=true` to enable hot reloading in development mode when running in Docker on Windows, as Turbopack is currently unreliable in this setup.
 
 <details>
 <summary>Using Docker</summary>
