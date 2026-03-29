@@ -112,7 +112,7 @@ Usage with Docker is an alternate option to using Node directly from the [Usage]
 docker compose build --no-cache
 ```
 
-> **INFO:** Do this step only once during initial installation. Re-run this step if there will be changes to the Dockerfile or after installing new Node libraries.
+> 💡 **INFO:** Do this step only once during initial installation. Re-run this step if there will be changes to the Dockerfile or after installing new Node libraries.
 
 #### 3. Run the container for local development.
 
@@ -155,7 +155,7 @@ Runs the NextJS app in production mode. Requires running `"npm run build"` first
 ### `npm run dev`
 
 - Runs the NextJS app in development mode with hot-reload using Turbopack and NodeJS.
-- See the `"npm run docker:dev"` script to run the NextJS app in development mode with hot-reload using Docker.
+- Set `IS_WEBPACK=1` then run `"docker compose up"` to run the NextJS app in development mode with hot-reload using Docker from a Windows host.
 
 ### `npm run build`
 
@@ -181,6 +181,10 @@ Lints TypeScript source codes and files, checking for linting errors.
 
 Fixes lint errors.
 
+### `npm run types:check`
+
+- Checks for TS type errors by generating run-time next-specific types via `"next typegen"` first.
+
 </details>
 <br>
 
@@ -191,11 +195,13 @@ These scripts are called within the `Dockerfile` for building images.
 <details>
 <summary>👉 Click to expand the list of available scripts</summary>
 
-### `npm run docker:dev`
+### `npm run docker:webpack`
 
 - Runs the NextJS app in development mode inside Docker using Webpack and NodeJS.
-- Sets the `WATCHPACK_POLLING=true` environment variable (only for Docker) to enable hot-reload with Webpack, since hot-reload with Turbopack [currently doesn't work in Docker](https://github.com/ymeskini/ai-app/issues/1).
+- Requires `IS_WEBPACK=1` in `.env.local`.
 - Uses the `docker-compose.yml` Docker compose file.
+
+> 💡 **NOTE**: To enable hot reloading, set `WATCHPACK_POLLING=true` in `.env.local`. This is required because Turbopack hot reload is not yet reliable for Next.js apps running in Docker on Windows.
 
 ### `npm run docker:build`
 
@@ -211,8 +217,13 @@ These scripts are called within the `Dockerfile` for building images.
 >
 > You can also run `docker exec -it weaponsforge-next-v16-template-dev npm run docker:static` to build a static output.
 
+## References
+
+- Next v15 currently doesn't work in Docker <sup>[[1]](https://github.com/ymeskini/ai-app/issues/1)</sup>
+
 </details>
 <br>
 
 @weaponsforge<br>
 20260216
+20260329
