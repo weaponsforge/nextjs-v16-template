@@ -3,6 +3,8 @@ services:
   weaponsforge.next16-dev:
     container_name: weaponsforge-next16-dev
     image: weaponsforge/next16:dev
+    env_file:
+      - ./nextapp/.env.local
     build:
       context: ./nextapp
       dockerfile: Dockerfile

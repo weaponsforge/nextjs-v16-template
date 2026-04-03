@@ -2,6 +2,8 @@
 
 Barebones NextJS v16 React app template using the **App Router** with custom ESLint rules and Docker configurations.
 
+> Next application code lives inside the `/src` directory.
+
 > [!TIP]
 > You may use this project as a **GitHub Template** for quick setup.<br>
 > Click **Use this template** (upper right), then select **Create a new repository**
@@ -54,6 +56,7 @@ npm install
 | IS_BUILD_DOCKER | If value is `1`, builds the NextJS app for Docker in production using the standalone mode build into the `/nextapp/.next/standalone` and `/nextapp/.next/static` directories. |
 | IS_BUILD_STATIC | If value is `1`, builds and exports the NextJS app into a static build in the `/nextapp/out` directory when running `"npm run build"`.<br><br>⚠️ Next.js apps that use heavy React Server Components (RSC) and Next.js server features will fail to build as a static output. Te enable true static export, [adjust necessary settings](https://nextjs.org/docs/app/guides/static-exports) in the `next.config.ts` file and the overall app before export. |
 | IS_WEBPACK | Set to `1` to run the app in development mode using **Webpack**. <br><br>⭐ **IMPORTANT**: When running the app via **Docker** on Windows OS (`docker compose up`), this must be set to `1` to enable hot reload.|
+| WATCHPACK_POLLING | Set to `true` to enable Webpack-based hot reloading when running the app in Docker on Windows. Required because Turbopack hot reload is currently unreliable in this setup (Docker + Windows). |
 
 ## 📖 Usage
 
@@ -74,6 +77,8 @@ http://localhost:3000
 
 #### 3. Edit the source code and wait for changes to display in the web browser.
 
+View the [STRUCTURE.md](/docs/STRUCTURE.md) for guidance on how to structure project folders and files within this project.
+
 #### 4. To build the React app
 
 - For [static export](https://nextjs.org/docs/app/getting-started/deploying#static-export) (only frontend HTML/CSS/JS), set the environment variables `IS_BUILD_STATIC=1` and `IS_BUILD_DOCKER=0`.
@@ -90,6 +95,9 @@ http://localhost:3000
    - This command exports the build artifacts to the `/nextapp/.next/standalone ` and `/nextapp/.next/.static` directories for **DOCKER STANDALONE MODE** (`IS_BUILD_DOCKER=1`).
 
 ## ⚡Alternate Usage
+
+> [!TIP]
+> Set `IS_WEBPACK=1` and `WATCHPACK_POLLING=true` to enable hot reloading in development mode when running in Docker on Windows, as Turbopack is currently unreliable in this setup.
 
 <details>
 <summary>Using Docker</summary>
@@ -112,7 +120,7 @@ Usage with Docker is an alternate option to using Node directly from the [Usage]
 docker compose build --no-cache
 ```
 
-> **INFO:** Do this step only once during initial installation. Re-run this step if there will be changes to the Dockerfile or after installing new Node libraries.
+> 💡 **INFO:** Do this step only once during initial installation. Re-run this step if there will be changes to the Dockerfile or after installing new Node libraries.
 
 #### 3. Run the container for local development.
 
@@ -155,7 +163,7 @@ Runs the NextJS app in production mode. Requires running `"npm run build"` first
 ### `npm run dev`
 
 - Runs the NextJS app in development mode with hot-reload using Turbopack and NodeJS.
-- See the `"npm run docker:dev"` script to run the NextJS app in development mode with hot-reload using Docker.
+- Set `IS_WEBPACK=1` then run `"docker compose up"` to run the NextJS app in development mode with hot-reload using Docker from a Windows host.
 
 ### `npm run build`
 
@@ -181,6 +189,10 @@ Lints TypeScript source codes and files, checking for linting errors.
 
 Fixes lint errors.
 
+### `npm run types:check`
+
+- Checks for TS type errors by generating run-time next-specific types via `"next typegen"` first.
+
 </details>
 <br>
 
@@ -191,11 +203,13 @@ These scripts are called within the `Dockerfile` for building images.
 <details>
 <summary>👉 Click to expand the list of available scripts</summary>
 
-### `npm run docker:dev`
+### `npm run docker:webpack`
 
 - Runs the NextJS app in development mode inside Docker using Webpack and NodeJS.
-- Sets the `WATCHPACK_POLLING=true` environment variable (only for Docker) to enable hot-reload with Webpack, since hot-reload with Turbopack [currently doesn't work in Docker](https://github.com/ymeskini/ai-app/issues/1).
+- Requires `IS_WEBPACK=1` in `.env.local`.
 - Uses the `docker-compose.yml` Docker compose file.
+
+> 💡 **NOTE**: To enable hot reloading, set `WATCHPACK_POLLING=true` in `.env.local`. This is required because Turbopack hot reload is not yet reliable for Next.js apps running in Docker on Windows.
 
 ### `npm run docker:build`
 
@@ -211,8 +225,13 @@ These scripts are called within the `Dockerfile` for building images.
 >
 > You can also run `docker exec -it weaponsforge-next-v16-template-dev npm run docker:static` to build a static output.
 
+## References
+
+- Next (Turbopack) currently doesn't work in Docker <sup>[[1]](https://github.com/ymeskini/ai-app/issues/1)</sup>
+
 </details>
 <br>
 
 @weaponsforge<br>
-20260216
+20260216<br>
+20260403

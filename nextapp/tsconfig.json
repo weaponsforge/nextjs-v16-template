@@ -19,9 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@/features": ["./app/features"],
-      "@/features/*": ["./app/features/*"]
+      "@/*": ["./src*"],
+      "@/features": ["./src/app/features"],
+      "@/features/*": ["./src/app/features/*"]
     }
   },
   "include": [
