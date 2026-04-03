@@ -77,6 +77,8 @@ http://localhost:3000
 
 #### 3. Edit the source code and wait for changes to display in the web browser.
 
+View the [STRUCTURE.md](/docs/STRUCTURE.md) for guidance on how to structure project folders and files within this project.
+
 #### 4. To build the React app
 
 - For [static export](https://nextjs.org/docs/app/getting-started/deploying#static-export) (only frontend HTML/CSS/JS), set the environment variables `IS_BUILD_STATIC=1` and `IS_BUILD_DOCKER=0`.
@@ -225,11 +227,11 @@ These scripts are called within the `Dockerfile` for building images.
 
 ## References
 
-- Next v15 currently doesn't work in Docker <sup>[[1]](https://github.com/ymeskini/ai-app/issues/1)</sup>
+- Next (Turbopack) currently doesn't work in Docker <sup>[[1]](https://github.com/ymeskini/ai-app/issues/1)</sup>
 
 </details>
 <br>
 
 @weaponsforge<br>
-20260216
-20260329
+20260216<br>
+20260403
