@@ -2,6 +2,8 @@
 
 Barebones NextJS v16 React app template using the **App Router** with custom ESLint rules and Docker configurations.
 
+> Next application code lives inside the `/src` directory.
+
 > [!TIP]
 > You may use this project as a **GitHub Template** for quick setup.<br>
 > Click **Use this template** (upper right), then select **Create a new repository**
