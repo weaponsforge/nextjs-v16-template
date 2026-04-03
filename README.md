@@ -2,6 +2,8 @@
 
 Barebones NextJS v16 React app template using the **App Router** with custom ESLint rules and Docker configurations.
 
+> Next application code lives inside the `/src` directory.
+
 > [!TIP]
 > You may use this project as a **GitHub Template** for quick setup.<br>
 > Click **Use this template** (upper right), then select **Create a new repository**
@@ -74,6 +76,8 @@ http://localhost:3000
 ```
 
 #### 3. Edit the source code and wait for changes to display in the web browser.
+
+View the [STRUCTURE.md](/docs/STRUCTURE.md) for guidance on how to structure project folders and files within this project.
 
 #### 4. To build the React app
 
@@ -223,11 +227,11 @@ These scripts are called within the `Dockerfile` for building images.
 
 ## References
 
-- Next v15 currently doesn't work in Docker <sup>[[1]](https://github.com/ymeskini/ai-app/issues/1)</sup>
+- Next (Turbopack) currently doesn't work in Docker <sup>[[1]](https://github.com/ymeskini/ai-app/issues/1)</sup>
 
 </details>
 <br>
 
 @weaponsforge<br>
-20260216
-20260329
+20260216<br>
+20260403

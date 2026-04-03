@@ -34,6 +34,10 @@ const eslintConfig = defineConfig([
       'no-trailing-spaces': 'error',
       'no-undef': 'off',
       'no-unused-vars': 'off',
+      'padding-line-between-statements': [
+        'error',
+        { blankLine: 'always', prev: '*', next: 'return' },
+      ],
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-require-imports': 'error',
       '@typescript-eslint/no-unused-vars': [
@@ -76,6 +80,7 @@ const eslintConfig = defineConfig([
               position: 'after',
             },
           ],
+          pathGroupsExcludedImportTypes: ['react', 'next'],
           'newlines-between': 'always',
           alphabetize: {
             order: 'asc',
