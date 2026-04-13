@@ -1,6 +1,6 @@
 {
   "name": "nextapp",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "engines": {
     "node": ">=24"
@@ -17,17 +17,17 @@
     "docker:static": "NODE_ENV=\"production\" IS_BUILD_STATIC=\"1\" npm run build"
   },
   "dependencies": {
-    "next": "16.2.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "next": "16.2.3",
+    "react": "19.2.5",
+    "react-dom": "19.2.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.2",
-    "@types/node": "^25.5.0",
+    "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9",
-    "eslint-config-next": "16.2.2",
+    "eslint-config-next": "16.2.3",
     "eslint-plugin-import": "^2.32.0",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3"
