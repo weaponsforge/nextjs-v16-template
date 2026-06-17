@@ -61,8 +61,9 @@ Grouping together feature-specific code like components, hooks, services removes
 ```text
 src/
 ├── app/
-|   ├── (marketing)/
-|   ├── (dashboard)/
+|   ├── (home)/
+|   ├── marketing/
+|   ├── dashboard/
 |   └── api/
 |
 ├── components/
@@ -77,10 +78,18 @@ src/
 |   |   ├── server/
 |   |   └── types.ts
 |   |
-|   └── courses/
+|   ├── marketing/
+|   |   ├── components/
+|   |   ├── services/
+|   |   ├── server/
+|   |   └── types.ts
+|   |
+|   └── home/
 |       ├── components/
-|       ├── services/
-|       ├── server/
+|       |   ├── About.tsx
+|       |   ├── Hero.tsx
+|       |   └── Profiles.tsx
+|       ├── hooks/
 |       └── types.ts
 |
 ├── lib/
