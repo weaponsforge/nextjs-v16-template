@@ -25,9 +25,9 @@ Barebones NextJS v16 React app template using the **App Router** with custom ESL
 
 | Library | Version | Description |
 | --- | --- | --- |
-| Next | 16.2.0 | A React framework |
-| React | 19.2.4 | Library for creating reusable/composable and interactive components |
-| Tailwind CSS | 4.2.1 | Generic, composable utility classes for CSS styling |
+| Next | 16.2.9 | A React framework |
+| React | 19.2.7 | Library for creating reusable/composable and interactive components |
+| Tailwind CSS | 4.3.1 | Generic, composable utility classes for CSS styling |
 | ESLint | 9+ | Enforces coding formats, rules and preferences |
 
 </details>
