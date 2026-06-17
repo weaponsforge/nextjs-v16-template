@@ -43,7 +43,7 @@ lib/
 
 Keeps routes clean and testable
 
-#### 3. Keeps routes clean and testable
+#### 3. Features group related code
 
 ```text
 features/
