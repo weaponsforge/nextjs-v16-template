@@ -86,9 +86,9 @@ src/
 |   |
 |   └── home/
 |       ├── components/
-|       |   ├── Header.tsx
+|       |   ├── About.tsx
 |       |   ├── Hero.tsx
-|       |   └── Footer.tsx
+|       |   └── Profiles.tsx
 |       ├── hooks/
 |       └── types.ts
 |
