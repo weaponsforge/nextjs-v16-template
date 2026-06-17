@@ -20,8 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src*"],
-      "@/features": ["./src/app/features"],
-      "@/features/*": ["./src/app/features/*"]
+      "@/features": ["./src/features"],
+      "@/features/*": ["./src/features/*"]
     }
   },
   "include": [

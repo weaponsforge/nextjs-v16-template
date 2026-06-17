@@ -43,7 +43,7 @@ lib/
 
 Keeps routes clean and testable
 
-#### 3. Features group related code
+#### 3. Keeps routes clean and testable
 
 ```text
 features/
@@ -61,8 +61,9 @@ Grouping together feature-specific code like components, hooks, services removes
 ```text
 src/
 ├── app/
-|   ├── (marketing)/
-|   ├── (dashboard)/
+|   ├── (home)/
+|   ├── marketing/
+|   ├── dashboard/
 |   └── api/
 |
 ├── components/
@@ -77,10 +78,18 @@ src/
 |   |   ├── server/
 |   |   └── types.ts
 |   |
-|   └── courses/
+|   ├── marketing/
+|   |   ├── components/
+|   |   ├── services/
+|   |   ├── server/
+|   |   └── types.ts
+|   |
+|   └── home/
 |       ├── components/
-|       ├── services/
-|       ├── server/
+|       |   ├── Header.tsx
+|       |   ├── Hero.tsx
+|       |   └── Footer.tsx
+|       ├── hooks/
 |       └── types.ts
 |
 ├── lib/
