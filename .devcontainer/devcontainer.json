@@ -1,0 +1,29 @@
+{
+  "name": "Next.js",
+  "build": {
+    "dockerfile": "../nextapp/Dockerfile",
+    "context": "../nextapp",
+    "target": "devcontainer"
+  },
+  "remoteUser": "node",
+  "updateRemoteUserUID": true,
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/nextapp",
+  "forwardPorts": [3000],
+  "mounts": [
+    "source=nextapp-node-modules,target=/workspaces/${localWorkspaceFolderBasename}/nextapp/node_modules,type=volume"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "containerEnv": {
+    "CHOKIDAR_USEPOLLING": "true",
+    "WATCHPACK_POLLING": "true",
+    "TURBOPACK_WATCH": "true"
+  },
+  "postCreateCommand": "sudo chown -R node:node node_modules && npm install && npm run dev"
+}
