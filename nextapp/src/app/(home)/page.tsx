@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { Menu } from '@/features'
+import { Menu } from '@/features/home'
 
 export default function Home() {
   return (
