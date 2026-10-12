@@ -15,7 +15,7 @@ COPY package*.json ./
 # --------------------------------------------------------------------
 FROM base AS builder
 RUN --mount=type=cache,target=/root/.npm \
-    npm ci && npm cache clean --force
+    npm ci
 COPY . ./
 
 # --------------------------------------------------------------------
@@ -32,16 +32,16 @@ RUN npm run docker:static
 
 # --------------------------------------------------------------------
 # DEVELOPMENT image (for docker compose / docker run)
+# Node.js alpine node user UID/GID is 1000/1000
 # --------------------------------------------------------------------
 FROM base AS development
 ENV NODE_ENV=development
-RUN --mount=type=cache,target=/root/.npm \
-    npm install && \
-    npm cache clean --force && \
-    mkdir -p /opt/client/.next && \
-    chown -R node:node /opt/client/.next
-COPY --chown=node:node . ./
+RUN mkdir -p /opt/client/.next && \
+    chown -R node:node /opt/client
 USER node
+RUN --mount=type=cache,target=/home/node/.npm,uid=1000,gid=1000 \
+    npm ci
+COPY --chown=node:node . ./
 EXPOSE 3000
 CMD ["sh", "-c", "if [ \"$IS_WEBPACK\" = \"1\" ]; then npm run docker:webpack; else npm run dev; fi"]
 

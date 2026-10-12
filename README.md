@@ -1,8 +1,8 @@
 ## nextjs-v16-template
 
-Barebones NextJS v16 React app template using the **App Router** with custom ESLint rules and Docker configurations.
+Barebones NextJS v16 React app template using the **App Router** with custom ESLint rules, codebase structure, coding patterns/conventions and Docker configurations.
 
-> Next application code lives inside the `/src` directory.
+> Next application code lives inside the `nextapp/src/` directory.
 
 > [!TIP]
 > You may use this project as a **GitHub Template** for quick setup.<br>
@@ -25,8 +25,9 @@ Barebones NextJS v16 React app template using the **App Router** with custom ESL
 
 | Library | Version | Description |
 | --- | --- | --- |
-| Next | 16.3.0 | A React framework |
-| React | 19.2.8 | Library for creating reusable/composable and interactive components |
+| Next | 16.4.0 | A React framework |
+| React | 19.3.0 | Library for creating reusable/composable and interactive components |
+| TypeScript | ^9 | Adds static types checking to JavaScript |
 | Tailwind CSS | 4.3.3 | Generic, composable utility classes for CSS styling |
 | ESLint | 9+ | Enforces coding formats, rules and preferences |
 
@@ -62,6 +63,10 @@ npm install
 
 Using Node
 
+> [!TIP]
+> Know more about this project's coding conventions in [CODEBASE.md](/nextapp/docs/CODEBASE.md)<br>
+> and workflow setup at [AGENTS.md](/nextapp/AGENTS.md)
+
 #### 1. Run the React app for local development.
 
 ```sh
@@ -77,7 +82,7 @@ http://localhost:3000
 
 #### 3. Edit the source code and wait for changes to display in the web browser.
 
-View the [STRUCTURE.md](/docs/STRUCTURE.md) for guidance on how to structure project folders and files within this project.
+View the [CODEBASE.md](/nextapp/docs/CODEBASE.md) for guidance on how to structure project folders and files within this project.
 
 #### 4. To build the React app
 
@@ -160,6 +165,10 @@ These scripts, compatible with running in Node and Docker, run various TypeScrip
 
 Runs the NextJS app in production mode. Requires running `"npm run build"` first.
 
+### `npm test`
+
+Runs tests scripts defined in `*.test.ts` files in the `nextapp/src/__tests__/` directory.
+
 ### `npm run dev`
 
 - Runs the NextJS app in development mode with hot-reload using Turbopack and NodeJS.
@@ -192,6 +201,18 @@ Fixes lint errors.
 ### `npm run types:check`
 
 - Checks for TS type errors by generating run-time next-specific types via `"next typegen"` first.
+
+### `npm run format:check`
+
+Checks for code formatting errors using Prettier.
+
+### `npm run format`
+
+Fixes code formatting errors.
+
+### `npm run verify`
+
+Chains `npm run lint` `npm run format:check` and `npm run types:check`
 
 </details>
 <br>
