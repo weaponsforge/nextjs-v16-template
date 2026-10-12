@@ -1,6 +1,7 @@
 import { defineConfig, globalIgnores } from 'eslint/config'
 import nextVitals from 'eslint-config-next/core-web-vitals'
 import nextTs from 'eslint-config-next/typescript'
+import prettierConfig from 'eslint-config-prettier/flat'
 import importPlugin from 'eslint-plugin-import'
 
 const eslintConfig = defineConfig([
@@ -20,42 +21,65 @@ const eslintConfig = defineConfig([
       import: importPlugin,
     },
     rules: {
-      'comma-dangle': ['error', 'always-multiline'],
-      'eol-last': ['error', 'always'],
       'import/no-commonjs': 'error',
-      'indent': ['error', 2],
-      'jsx-quotes': ['error', 'prefer-double'],
-      'keyword-spacing': ['error', { before: true, after: true }],
-      'linebreak-style': ['error', 'unix'],
-      'object-curly-spacing': ['error', 'always'],
-      'quotes': ['error', 'single'],
-      'semi': ['error', 'never'],
       'no-console': ['error', { allow: ['error'] }],
-      'no-multi-spaces': 'error',
-      'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 1, maxBOF: 0 }],
-      'no-trailing-spaces': 'error',
       'no-undef': 'off',
       'no-unused-vars': 'off',
       'padding-line-between-statements': [
         'error',
         { blankLine: 'always', prev: '*', next: 'return' },
       ],
-      'react/jsx-indent': ['error', 2],
-      'react/jsx-indent-props': ['error', 2],
       'react/react-in-jsx-scope': 'off',
-      'space-before-blocks': ['error', 'always'],
       '@typescript-eslint/no-require-imports': 'error',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
-          'argsIgnorePattern': '^_',
-          'varsIgnorePattern': '^_',
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
         },
       ],
       'no-restricted-imports': [
         'error',
         {
-          'patterns': ['@/features/*/*'],
+          patterns: ['@/features/*/*'],
+        },
+      ],
+      'max-lines': [
+        'warn',
+        { max: 250, skipBlankLines: true, skipComments: true },
+      ],
+      '@typescript-eslint/explicit-module-boundary-types': 'error',
+      '@typescript-eslint/naming-convention': [
+        'error',
+        { selector: 'typeLike', format: ['PascalCase'] },
+        {
+          selector: 'variable',
+          format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+          leadingUnderscore: 'allow',
+        },
+        {
+          selector: 'function',
+          format: ['camelCase', 'PascalCase'],
+        },
+        {
+          selector: 'parameter',
+          format: ['camelCase', 'PascalCase'],
+          leadingUnderscore: 'allow',
+        },
+        {
+          selector: 'import',
+          format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+        },
+        {
+          selector: ['property', 'objectLiteralProperty', 'typeProperty'],
+          format: null,
+        },
+      ],
+      'react/function-component-definition': [
+        'error',
+        {
+          namedComponents: 'function-declaration',
+          unnamedComponents: 'arrow-function',
         },
       ],
       'import/order': [
@@ -111,6 +135,8 @@ const eslintConfig = defineConfig([
       'import/newline-after-import': ['error', { count: 1 }],
     },
   },
+  // Must be last: disables ESLint rules that conflict with Prettier.
+  prettierConfig,
 ])
 
 export default eslintConfig
