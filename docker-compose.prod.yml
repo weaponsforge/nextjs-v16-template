@@ -15,6 +15,12 @@ services:
       - /opt/client/.next
     ports:
       - "3000:3000"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--spider", "--tries=1", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
 
 networks:
   weaponsforge-next16-prod:
