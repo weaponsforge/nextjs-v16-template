@@ -89,7 +89,7 @@ Copy `.env.example` to `.env.local`. `next.config.ts` throws an error if `IS_BUI
 
 Path aliases: `@/*` maps to `src/*`. There are also `@/features` and `@/components/*`.
 
-## Testing
+## Testing and Verification
 
 - **Runner**: Vitest with React Testing Library in a jsdom environment. Config is in `vitest.config.mts` (setup in `vitest.setup.ts`), which resolves the `@/` path aliases from `tsconfig.json`.
 - **Location**: tests live in `src/__tests__/`, at a path that mirrors the code under test in `src/`. Vitest only picks up `src/__tests__/**/*.test.{ts,tsx}`.
@@ -99,7 +99,7 @@ Path aliases: `@/*` maps to `src/*`. There are also `@/features` and `@/componen
 - **Assertions**: `vitest.setup.ts` registers the `@testing-library/jest-dom` matchers. Use them for DOM checks, such as `toBeInTheDocument()`, `toBeVisible()`, `toBeDisabled()`, `toHaveAttribute()`, `toHaveClass()` and `toHaveTextContent()`, instead of hand-written property checks. jsdom doesn't load Tailwind CSS, so `toBeVisible()` can't see elements hidden by classes like `hidden`. Use `toHaveClass('hidden')` for those.
 - **Cleanup**: `vitest.setup.ts` (loaded via `setupFiles`) calls Testing Library's `cleanup()` after every test. Test files don't need their own `afterEach(cleanup)`. Put other global test setup in this file too.
 - **Imports**: test files follow the same ESLint rules as app code. Import feature code through its barrel (`@/features/<name>`) or a route file (`@/app/...`), not through deep `@/features/*/*` paths.
-- `npm test` must pass before a commit. `npm run verify` does not run the tests, so run both.
+- `npm run verify`, `npm test` and `npm run build` must pass before a commit. `npm run verify` does not run the tests, so run all three.
 
 ## Conventions
 

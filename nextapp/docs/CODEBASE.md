@@ -226,13 +226,15 @@ Formatting (semicolons, quotes, indent, line endings, trailing commas) is owned 
 
 ## Verification
 
-Before a commit or build is considered good, `npm run verify` must pass — it chains:
+Before a commit or build is considered good, `npm run verify`, `npm test` and `npm run build` must pass.
+
+`npm run verify` chains:
 
 - `lint` (ESLint — correctness, imports, unused vars)
 - `format:check` (Prettier — formatting, no writes)
 - `types:check` (next typegen && tsc --noEmit — TypeScript types, including generated route types)
 
-Run `npm run verify` and `npm test` locally and in CI before merging.
+Run `npm run verify`, `npm test` and `npm run build` locally and in CI before merging.
 
 ## 📐 General Coding Guidelines
 

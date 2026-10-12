@@ -44,6 +44,7 @@ To ensure a smooth contribution process for everyone, please follow these guidel
    - Before commiting your changes, format your code with `"npm run lint:fix"`, and ensure all updates pass:
       - `npm run verify` (chains `"npm run lint"`, `npm run format:check`, and `"npm run types:check"`)
       - `npm test`
+      - `npm run build`
 
 3. **Commit Your Changes:** After making your changes, commit them to your branch. Use clear and concise commit messages to describe your updates.
    ```sh
