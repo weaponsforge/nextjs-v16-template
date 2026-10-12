@@ -82,7 +82,7 @@ http://localhost:3000
 
 #### 3. Edit the source code and wait for changes to display in the web browser.
 
-View the [STRUCTURE.md](/docs/STRUCTURE.md) for guidance on how to structure project folders and files within this project.
+View the [CODEBASE.md](/nextapp/docs/CODEBASE.md) for guidance on how to structure project folders and files within this project.
 
 #### 4. To build the React app
 
@@ -165,6 +165,10 @@ These scripts, compatible with running in Node and Docker, run various TypeScrip
 
 Runs the NextJS app in production mode. Requires running `"npm run build"` first.
 
+### `npm test`
+
+Runs tests scripts defined in `*.test.ts` files in the `nextapp/src/__tests__/` directory.
+
 ### `npm run dev`
 
 - Runs the NextJS app in development mode with hot-reload using Turbopack and NodeJS.
@@ -197,6 +201,18 @@ Fixes lint errors.
 ### `npm run types:check`
 
 - Checks for TS type errors by generating run-time next-specific types via `"next typegen"` first.
+
+### `npm run format:check`
+
+Checks for code formatting errors using Prettier.
+
+### `npm run format`
+
+Fixes code formatting errors.
+
+### `npm run verify`
+
+Chains `npm run lint` `npm run format:check` and `npm run types:check`
 
 </details>
 <br>
