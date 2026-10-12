@@ -14,6 +14,7 @@
     "types:check": "next typegen && tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "verify": "npm run lint && npm run format:check && npm run types:check",
     "docker:webpack": "next dev --webpack",
     "docker:build": "IS_BUILD_DOCKER=\"1\" npm run build",
     "docker:static": "NODE_ENV=\"production\" IS_BUILD_STATIC=\"1\" npm run build"

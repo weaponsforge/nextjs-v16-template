@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import RibbonCard from '@//components/ui/Ribbon'
+import RibbonCard from '@/components/ui/Ribbon'
 
 export default function Header(): ReactNode {
   return (
