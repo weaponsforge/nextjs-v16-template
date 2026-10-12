@@ -1,15 +1,16 @@
+import type { ReactNode } from 'react'
+
 interface RibbonCardProps {
-  label?: string;
-  title: string;
-  description: string;
+  label?: string
+  title: string
+  description: string
 }
 
-export default function RibbonCard(props: RibbonCardProps) {
+export default function RibbonCard(props: RibbonCardProps): ReactNode {
   const { label = 'FEATURED', title, description } = props
 
   return (
     <div className="relative min-w-32 max-w-80 min-h-18 p-4 bg-white shadow-lg rounded-xl overflow-hidden">
-
       {/* Ribbon */}
       <div className="absolute top-4 -left-6 -rotate-45">
         <div className="relative bg-blue-600 text-white text-xs font-bold px-6 py-1 shadow-md">
@@ -23,13 +24,9 @@ export default function RibbonCard(props: RibbonCardProps) {
 
       {/* Content */}
       <div className="p-6">
-        <h2 className="text-lg font-semibold">
-          {title}
-        </h2>
+        <h2 className="text-lg font-semibold">{title}</h2>
 
-        <p className="text-gray-500 font-normal text-lg">
-          {description}
-        </p>
+        <p className="text-gray-500 font-normal text-lg">{description}</p>
       </div>
     </div>
   )

@@ -1,6 +1,8 @@
-import RibbonCard from '@//components/ui/Ribbon'
+import type { ReactNode } from 'react'
 
-export default function Header () {
+import RibbonCard from '@/components/ui/Ribbon'
+
+export default function Header(): ReactNode {
   return (
     <div className="flex justify-center items-center gap-4 w-full min-h-4 p-4 bg-lime-100 font-bold text-3xl">
       <div>Welcome ➜</div>
