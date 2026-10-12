@@ -40,7 +40,7 @@ To ensure a smooth contribution process for everyone, please follow these guidel
 
 2. **Add Your Content:** Make your changes or additions to the project.
    - If you're adding new content, ensure it's placed in the correct directory (`/nextapp`) and follows intuitive file, variables, and TypeScript naming conventions. Furthermore, ensure React best practices to continue promoting well-structured, optimized and self-documenting React components.
-      > **INFO**: Read the [STRUCTURE.md](/docs/STRUCTURE.md) for more information on how this project structures its files and directories.
+      > **INFO**: Read the [CODEBASE.md](/nextapp/docs/CODEBASE.md) for more information on how this project structures its files and directories.
    - Before commiting your changes, format your code with `"npm run lint:fix"`, and ensure all updates pass:
       - `npm run verify` (chains `"npm run lint"`, `npm run format:check`, and `"npm run types:check"`)
       - `npm test`
