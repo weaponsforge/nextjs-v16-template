@@ -232,7 +232,7 @@ Before a commit or build is considered good, `npm run verify` must pass — it c
 - `format:check` (Prettier — formatting, no writes)
 - `types:check` (next typegen && tsc --noEmit — TypeScript types, including generated route types)
 
-Run `npm run verify` locally and in CI before merging.
+Run `npm run verify` and `npm test` locally and in CI before merging.
 
 ## 📐 General Coding Guidelines
 
@@ -340,3 +340,28 @@ The React app follows the [container-component pattern](https://www.patterns.dev
 - Always use short, direct-to-the point **JSDoc-style descriptions** to describe function parameters, return types, and TypeScript type or interface definitions.
 - Add **minimal, short, direct-to-the-point inline comments** where necessary to clarify intent, especially for complex or non-obvious logic.
 - Use **descriptive and self-explanatory variable names** to reduce the need for excessive comments and improve overall code readability.
+
+## 📦 Use of External Libraries
+
+- Strive to **minimize external dependencies**, especially for simple or easily implementable functionality (e.g., a function that sums two numbers).
+- Only use third-party Node libraries when **truly necessary**—for example, when a library:
+  - Provides functionality that would be complex or time-consuming to build from scratch
+  - Is used frequently across the app
+  - Helps avoid "reinventing the wheel" for heavy processing tasks
+- Before adding a library, consider the following 🟢 green flags:
+  - It comes from a **credible author or organization**, with an active and trustworthy GitHub repository
+  - It has **high usage** and community trust (e.g., ~100K+ downloads on the NPM registry)
+  - It has **small and lightweight footprint** (eg., about ~300KB-2MB unpacked) or if it supports **tree-shaking**.
+  - The source code is **open, transparent, and actively maintained** (eg., few open GitHub Issues or PRs)
+  - Even if not actively maintained, the library still **aligns with your needs** and is simple enough to extend or adapt for custom use (e.g., a JavaScript `class` that can be easily refactored or subclassed (`extend`) for custom use)
+
+## 🧪 Testing
+
+> [!NOTE]
+> _Use **Vitest** and **React Testing Library** for simple feature-level tests. Aim for e2e tests at the post-deployment stage on appropriate cases._
+
+- Place test files in the `__tests__` folder mirroring the the component, hook, or script they test in `src/`.
+- Name test files to match the target module, using the suffix: `*.test.ts` or `*.test.tsx`.
+  > **Example:** Button.tsx → Button.test.tsx
+- **selectively write tests** for critical or global components, features, or business logic as needed.
+- All code should pass `"npm test"` before commit.
