@@ -126,7 +126,7 @@ Path aliases: `@/*` maps to `src/*`. There are also `@/features` and `@/componen
 ## Gotchas for newcomers
 
 - **Read the bundled Next.js docs first** (`node_modules/next/dist/docs/01-app/`). Next 16 / React 19 differ from older training data.
-- **Barrel only**: `@/features/<name>` is allowed, `@/features/<name>/components/...` fails lint. Add new exports to the feature's `index.tsx` (it is `.tsx`, and currently re-exports default imports as named exports).
+- **Barrel only**: `@/features/<name>` is allowed, `@/features/<name>/components/...` fails lint. Add new exports to the feature's `index.ts` (a plain `.ts` file with no JSX, which re-exports each component by name, e.g. `export { HomeView } from './components/HomeView'`).
 - **Tests live only in `src/__tests__/`** mirroring `src/`. A test placed next to the source file is never run.
 - **`npm run verify` skips tests.** Run `verify`, `npm test` and `npm run build` before calling a change done.
 - **Components are `function` declarations; helpers are arrow functions.** ESLint enforces this, along with a blank line before every `return` and `import/order` (react, then next, then `@/components`, `@/hooks`, `@/lib`).

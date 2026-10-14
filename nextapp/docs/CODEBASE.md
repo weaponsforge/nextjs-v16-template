@@ -11,15 +11,16 @@ my-next-app/
 ├── public/
 ├── src/
 │   ├── app/                # Routing (App Router)
+|   |   ├── globals.css     # Global styles
+|   |   └── layout.tsx
 │   ├── components/         # Shared UI components (ui/ = vendored shadcn/ui primitives)
 │   ├── features/           # Domain-driven modules
 │   │── lib/                # Shared utilities, clients, configs
 |   │   ├── constants.ts    # Shared constants definition
 |   │   └── helpers.ts      # Shared helper functions
 │   ├── hooks/              # Shared reusable hooks
-│   ├── types/              # Global types
-│   └── styles/             # Global styles
-├── next.config.js
+│   └── types/              # Global types
+├── next.config.ts
 ├── tsconfig.json
 └── package.json
 ```
@@ -119,7 +120,6 @@ src/
 |
 ├── hooks/
 ├── types/
-├── styles/
 ...
 ```
 
@@ -128,7 +128,7 @@ src/
 eg., in `/features/auth/index.ts`:
 
 ```tsx
-export { default as AuthWidget } from './components/AuthWidget'
+export { AuthWidget } from './components/AuthWidget'
 export { signIn, signOut } from './utils/authClient'
 export { AUTH_CODE, AUTH_ERROR, AUTH_ROUTES } from './utils/constants'
 ```
@@ -168,13 +168,19 @@ Follow these path aliases in `tsconfig.json` when creating new components. Use p
 
 Check and enforce the following ESLint rules for code correctness, imports, unused variables:
 
-```json
+```js
 rules: {
   'import/no-commonjs': 'error',
   'no-console': ['error', { allow: ['error'] }],
   'no-undef': 'off',
   'no-unused-vars': 'off',
   'react/react-in-jsx-scope': 'off',
+  'padding-line-between-statements': [
+    'error',
+    { blankLine: 'always', prev: '*', next: 'return' },
+  ],
+  'import/newline-after-import': ['error', { count: 1 }],
+  'import/order': [/* groups and pathGroups: see eslint.config.mjs */],
   '@typescript-eslint/no-require-imports': 'error',
   '@typescript-eslint/no-unused-vars': [
     'error',
@@ -206,6 +212,28 @@ rules: {
     { 'namedComponents': 'function-declaration', 'unnamedComponents': 'arrow-function' },
   ],
 }
+```
+
+### Import order and spacing (`import/order`)
+
+Order imports in these groups, separated by one blank line and sorted A-Z (case-insensitive) within each group:
+
+1. `react`
+2. `next/**` and other external packages
+3. `@/components/**`, then `@/hooks/**`, `@/lib/**`, and other `@/**` aliases
+4. Relative imports (`./`, `../`)
+5. `import type` from modules other than `react` (type imports from `react` stay in group 1)
+
+Also leave one blank line after the import block and one before every `return`. Run `npm run lint:fix` to apply these automatically. The exact config is in `eslint.config.mjs`.
+
+```tsx
+import type { ReactNode } from 'react'
+
+import Link from 'next/link'
+
+import { Button } from '@/components/ui/button'
+
+import { cn } from '@/lib/utils'
 ```
 
 ## Prettier
@@ -440,4 +468,4 @@ Use scale utilities and theme tokens, not arbitrary values that equal them. Scal
 - Converting spacing by hand: 1 step = 0.25rem = 4px, so divide px by 4 (160px → `40`, 6px → `1.5`). `px` means exactly 1px.
 - Arbitrary values are fine when no scale value fits: one-off sizes (add a comment saying why), `grid-cols-[200px_1fr]`, `calc()`, `url()`. Arbitrary variants (`[&>svg]:size-4`, `has-[…]:`) are not arbitrary values.
 - If the same arbitrary value appears twice, it's a missing token. Add it to `@theme` (`--spacing-sidebar: 15rem` gives `w-sidebar`) instead of repeating it.
-- After editing classes, run `<lint fix command>` and fix what it reports. Don't enforce class conventions in unit tests.
+- After editing classes, run `npm run lint:fix` and fix what it reports. Don't enforce class conventions in unit tests.
