@@ -2,7 +2,7 @@
 
 Barebones NextJS v16 React app template using the **App Router** with custom ESLint rules, codebase structure, coding patterns/conventions and Docker configurations.
 
-> Next application code lives inside the `nextapp/src/` directory.
+> Next application code, codebase ([CODEBASE.md](/nextapp/docs/CODEBASE.md)) and workflow ([AGENTS.md](/nextapp/AGENTS.md)) documentation lives in `nextapp/`
 
 > [!TIP]
 > You may use this project as a **GitHub Template** for quick setup.<br>
@@ -29,6 +29,7 @@ Barebones NextJS v16 React app template using the **App Router** with custom ESL
 | React | 19.3.0 | Library for creating reusable/composable and interactive components |
 | TypeScript | ^9 | Adds static types checking to JavaScript |
 | Tailwind CSS | 4.3.3 | Generic, composable utility classes for CSS styling |
+| Shadcn/UI | 4.21.4 | React component library (Base UI) |
 | ESLint | 9+ | Enforces coding formats, rules and preferences |
 
 </details>
