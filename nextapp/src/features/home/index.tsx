@@ -1,3 +1,1 @@
-import Menu from './components/menu/Menu'
-
-export { Menu }
+export { Menu } from './components/menu/Menu'
