@@ -7,3 +7,6 @@ package-lock.json
 next-env.d.ts
 *.tsbuildinfo
 .claude
+
+# Vendored shadcn/ui primitives (shadcn CLI output)
+src/components/ui

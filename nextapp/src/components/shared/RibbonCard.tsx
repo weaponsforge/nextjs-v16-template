@@ -6,7 +6,7 @@ interface RibbonCardProps {
   description: string
 }
 
-export default function RibbonCard(props: RibbonCardProps): ReactNode {
+export function RibbonCard(props: RibbonCardProps): ReactNode {
   const { label = 'FEATURED', title, description } = props
 
   return (
