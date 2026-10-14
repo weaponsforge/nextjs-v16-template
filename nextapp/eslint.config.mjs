@@ -135,6 +135,15 @@ const eslintConfig = defineConfig([
       'import/newline-after-import': ['error', { count: 1 }],
     },
   },
+  // Vendored shadcn/ui primitives: added via the shadcn CLI, never hand-edited.
+  {
+    files: ['src/components/ui/**'],
+    rules: {
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      'max-lines': 'off',
+      'react/function-component-definition': 'off',
+    },
+  },
   // Must be last: disables ESLint rules that conflict with Prettier.
   prettierConfig,
 ])

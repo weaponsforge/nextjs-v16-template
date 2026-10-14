@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { RibbonCard } from '@/components/ui/Ribbon'
+import { RibbonCard } from '@/components/shared/RibbonCard'
 
 export function Header(): ReactNode {
   return (
