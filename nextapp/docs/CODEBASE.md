@@ -294,8 +294,8 @@ The React app follows the [container-component pattern](https://www.patterns.dev
 - Name **component folder names** using **camelCase**, **components** in **PascalCase** (e.g., `FeatureOne.tsx`, `featureTwo/FeatureTwo.tsx`).
 - Keep React components focused on **UI (JSX/HTML)** with minimal logic. Whenever possible, separate logic and data handling into custom **React hooks** (`"containers"`), and use components solely for rendering UI.
 - Use **TypeScript interfaces or types** to define props instead of PropTypes.
-- Make good use of **component composition** — build small, focused components that can be composed together.
 - A file should only have one React component. Avoid defining multiple components in a single file.
+- Make good use of **component composition** — build small, focused components that can be composed together.
 - Group React components into sub-feature folders under `features/`, e.g. `features/reflections/view` and `features/reflections/edit`.
 - Place non-feature **globally reusable UI or layout components** in the `📂 /src/components` (ui or layout) subfolders.
 - Define local states in a **useReducer** hook when: (1) the component needs to track "submitted", "fetch failed", "item removed" scenarios, (2) local states start clustering (more than 7 local states)
@@ -331,7 +331,7 @@ The React app follows the [container-component pattern](https://www.patterns.dev
          <User
            key={item.id}
            name={item.name}
-           />
+         />
        ))}
      </div>
    )

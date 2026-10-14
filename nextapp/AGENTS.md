@@ -118,3 +118,15 @@ Path aliases: `@/*` maps to `src/*`. There are also `@/features` and `@/componen
 - **Dependencies**: keep external libraries to a minimum, and don't add one for something simple to write by hand. Add a library only when it is truly needed (complex to build, used widely, or heavy processing). Prefer libraries that are credible, widely used (about 100K+ npm downloads), lightweight or tree-shakeable, and actively maintained.
 - **Testing**: use Vitest and React Testing Library for selective, feature-level tests. See [Testing](#testing).
 - Run `npm run verify` and `npm test` before considering a change done.
+
+## Gotchas for newcomers
+
+- **Read the bundled Next.js docs first** (`node_modules/next/dist/docs/01-app/`). Next 16 / React 19 differ from older training data.
+- **Barrel only**: `@/features/<name>` is allowed, `@/features/<name>/components/...` fails lint. Add new exports to the feature's `index.tsx` (it is `.tsx`, and currently re-exports default imports as named exports).
+- **Tests live only in `src/__tests__/`** mirroring `src/`. A test placed next to the source file is never run.
+- **`npm run verify` skips tests.** Run `verify`, `npm test` and `npm run build` before calling a change done.
+- **Components are `function` declarations; helpers are arrow functions.** ESLint enforces this, along with a blank line before every `return` and `import/order` (react, then next, then `@/components`, `@/hooks`, `@/lib`).
+- **Don't hand-edit generated files**: `next-env.d.ts`, `.next/`, `tsconfig.tsbuildinfo`. `types:check` runs `next typegen` first, so route types exist only after it.
+- **Static vs Docker builds are mutually exclusive** (`IS_BUILD_STATIC`, `IS_BUILD_DOCKER`). Static export means no server actions, API routes, or runtime server features.
+- **Compose files and the Docker workflow assume a parent directory** that isn't in this repo checkout. Prefer the npm workflow.
+- **Styling is Tailwind 4**: tokens live in `src/app/globals.css`, with no `tailwind.config`. Prefer scale utilities over arbitrary values.
